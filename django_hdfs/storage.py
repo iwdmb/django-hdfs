@@ -39,15 +39,15 @@ class HDFSStorage(Storage):
             local_dir = os.path.dirname(local_path)
             if not os.path.exists(local_dir):
                 os.mkdir(local_dir)
-            print self.client.download(remote_path, local_path=local_path, overwrite=True,
-                                       temp_dir=tempfile.gettempdir())
+            print(self.client.download(remote_path, local_path=local_path, overwrite=True,
+                                       temp_dir=tempfile.gettempdir()))
         return File(open(local_path, mode))
 
     def _save(self, name, content):
-        print "_save(%s, %s, %s)" % (self, name, content)
+        print("_save(%s, %s, %s)" % (self, name, content))
         local_path = content.name
         hdfs_path = self.path(name)  # os.path.basename(local_path))
-        print hdfs_path, local_path
+        print(hdfs_path, local_path)
         self.client.write(hdfs_path, data=content, overwrite=True)
         return name
 

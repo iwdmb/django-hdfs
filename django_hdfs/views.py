@@ -35,7 +35,7 @@ def hdfs_usage(request, root=None):
                     'name': appcode,
                     'value': round(data['ContentSummary']['length'] / 1000000.0, 2)
                 })
-    except HdfsError, e:
+    except HdfsError as e:
         log.warn("hdfs_usage error: %s", e)
         return HttpResponseNotFound(dumps(tree), content_type='application/json')
     return HttpResponse(dumps(tree), content_type='application/json')
