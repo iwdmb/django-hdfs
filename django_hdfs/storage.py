@@ -38,7 +38,7 @@ class HDFSStorage(Storage):
             remote_path = self.path(name)
             local_dir = os.path.dirname(local_path)
             if not os.path.exists(local_dir):
-                os.mkdir(local_dir)
+                os.makedirs(local_dir)
             print(self.client.download(remote_path, local_path=local_path, overwrite=True,
                                        temp_dir=tempfile.gettempdir()))
         return File(open(local_path, mode))
